@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Ankit ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    text-align: center;
+    padding: 30px;
+    color: #4a1c1c;
+}
+
+#scoreBox {
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #b30047;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    max-width: 500px;
+    margin: auto;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+    animation: fadeIn 0.8s ease;
+}
+
+h1 {
+    color: #e6005c;
+}
+
+p {
+    font-size: 18px;
+}
+
+button {
+    background: #e6005c;
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    margin: 8px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+button:hover {
+    background: #cc0052;
+    transform: scale(1.05);
+}
+
+.no-btn {
+    background: #999;
+    position: relative;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.heart {
+    position: fixed;
+    font-size: 24px;
+    animation: float 1.5s ease-out forwards;
+}
+
+@keyframes float {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-80px); }
+}
+</style>
+</head>
+
+<body>
+
+<div id="scoreBox">Score: 0 ❤️</div>
+
+<div class="card" id="screen">
+    <h1>Hi Ankit ❤️</h1>
+    <p>
+        This little surprise is from<br>
+        <strong>Shalini</strong> 💕<br><br>
+        I miss you 🥺<br>
+        Answer a few questions about us…
+    </p>
+    <button onclick="next()">Start 💌</button>
+</div>
+
+<script>
+let i = 0;
+let score = 0;
+
+const questions = [
+`<h1>💭 Question 1</h1>
+<p>Where did we make our sweetest memories?</p>
+<button onclick="answer()">Peach Restaurant, Noida 🍑</button>
+<button onclick="answer()">Sec 45, Noida</button>
+<button onclick="answer()">Everywhere together ❤️</button>`,
+
+`<h1>💕 Question 2</h1>
+<p>What do I say to you the most?</p>
+<button onclick="answer()">I miss u 🥺</button>
+<button onclick="answer()">I love you 😘</button>
+<button onclick="answer()">Take care ❤️</button>`,
+
+`<h1>💖 Question 3</h1>
+<p>What keeps us together no matter what?</p>
+<button onclick="answer()">Love 💞</button>
+<button onclick="answer()">Understanding 🤝</button>
+<button onclick="answer()">All of the above 😌</button>`,
+
+`<h1>💖 Question 4</h1>
+<p>What do u love the most about me?</p>
+<button onclick="answer()">Eyes 💞</button>
+<button onclick="answer()">Lips 🤝</button>
+<button onclick="answer()">Smile 😌</button>
+<button onclick="answer()">All of the above 😍</button>`,
+
+`<h1>😅 Question 5</h1>
+<p>Who gets angry first?</p>
+<button onclick="answer()">Shalini 🙈</button>
+<button onclick="answer()">Ankit 😏</button>`,
+
+`<h1>💄 Question 6</h1>
+<p>Who gets ready first?</p>
+<button onclick="answer()">Shalini ✨</button>
+<button onclick="answer()">Ankit 😄</button>`,
+
+`<h1>💘 Question 7</h1>
+<p>Who is more romantic?</p>
+<button onclick="answer()">Shalini 💕</button>
+<button onclick="answer()">Ankit 😌</button>
+<button onclick="answer()">Both of us 💖</button>`,
+
+`<h1>💍 One Last Question</h1>
+<p>Ankit Singh,<br>will you choose me forever?</p>
+<button onclick="final()">YES ❤️</button>
+<button class="no-btn" onmouseover="runAway(this)">NO 😜</button>`
+];
+
+function next() {
+    if (i < questions.length) {
+        document.getElementById("screen").innerHTML = questions[i];
+        i++;
+    }
+}
+
+function answer() {
+    score += 10;
+    updateScore();
+    next();
+    spawnHeart();
+}
+
+function final() {
+    score += 10;
+    updateScore();
+
+    document.getElementById("screen").innerHTML = `
+    <h1>🏆 PERFECT BOYFRIEND 💖</h1>
+    <p>
+        You scored <strong>${score}/100</strong> 😍<br><br>
+        Official result:<br>
+        <strong>You are a PERFECT boyfriend ❤️</strong><br><br>
+
+        Caring ✔️<br>
+        Romantic ✔️<br>
+        Mine forever ✔️😌<br><br>
+
+        No matter the distance,<br>
+        no matter the fights…<br><br>
+        I choose you.<br>
+        Every day. Every lifetime. 💖<br><br>
+        Happy Valentine’s Day,<br>
+        <strong>Love, Shalini ❤️</strong>
+    </p>`;
+    spawnHeart();
+}
+
+function updateScore() {
+    document.getElementById("scoreBox").innerText =
+        "Score: " + score + " ❤️";
+}
+
+function runAway(btn) {
+    const x = Math.random() * 200 - 100;
+    const y = Math.random() * 200 - 100;
+    btn.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+function spawnHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.top = "70vh";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 1500);
+}
+</script>
+
+</body>
+</html>
